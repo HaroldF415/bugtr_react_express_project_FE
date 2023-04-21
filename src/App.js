@@ -1,10 +1,16 @@
-import { NavBar } from "./components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { NavBar, Transactions } from "./components";
 
 const App = () => {
   return (
-    <main>
-      <NavBar />
-    </main>
+    <>
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/transactions" element={<Transactions />} />
+        </Routes>
+      </Router>
+    </>
   );
 };
 
