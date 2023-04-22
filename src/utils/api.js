@@ -11,3 +11,13 @@ export const fetchTransactions = async () => {
     return [];
   }
 };
+
+export const fetchTransaction = async (index) => {
+  try {
+    const response = await axios.get(`${API}/transactions/${index}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+};
