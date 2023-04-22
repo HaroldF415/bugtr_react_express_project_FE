@@ -4,9 +4,13 @@ const NavBar = () => {
   return (
     <nav>
       <ul>
-        <li>Budgtr</li>
         <li>
-          <Link to="/transactions/new">New Transaction</Link>
+          <Link to="/">Budgter</Link>
+        </li>
+        <li>
+          <Link to="/transactions/new">
+            <button>New Transaction</button>
+          </Link>
         </li>
       </ul>
     </nav>
