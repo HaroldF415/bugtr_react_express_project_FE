@@ -1,5 +1,6 @@
 // barrel exporting
 import NavBar from "./common/NavBar/NavBar";
-import Transactions from "./Transactions/Transactions";
+import Home from "./Home/Home";
+import Transactions from "./Transactions/TransactionsIndex/Transactions";
 
-export { NavBar, Transactions };
+export { NavBar, Home, Transactions };

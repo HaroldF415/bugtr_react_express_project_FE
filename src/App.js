@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { NavBar, Transactions } from "./components";
+import { NavBar, Home, Transactions } from "./components";
 
 const App = () => {
   return (
@@ -7,6 +7,7 @@ const App = () => {
       <Router>
         <NavBar />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/transactions" element={<Transactions />} />
         </Routes>
       </Router>
