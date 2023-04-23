@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchTransactions } from "../../../utils/api";
+import { useTransactions } from "../../../hooks/useTransactions";
 import { firstLetterUppercase, humanReadableDate, humanReadableAmount } from "../../../utils/formattingHelpers";
 
 const Transaction = ({ transaction, index }) => {
@@ -29,15 +29,7 @@ const Transaction = ({ transaction, index }) => {
 };
 
 const Transactions = () => {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    const fetchAPI = async () => {
-      setTransactions(await fetchTransactions());
-    };
-
-    fetchAPI();
-  }, []);
+  const transactions = useTransactions();
 
   return (
     <div className="container mx-auto px-4">
