@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { NavBar, Home, Transactions, ShowTransaction, NewTransaction, UpdateTransaction } from "./components";
+import { NavBar, Home, Transactions, ShowTransaction, NewTransaction, UpdateTransaction, BankTotal } from "./components";
 
 const App = () => {
   return (
     <>
       <Router>
         <NavBar />
+        <BankTotal />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/transactions" element={<Transactions />} />
