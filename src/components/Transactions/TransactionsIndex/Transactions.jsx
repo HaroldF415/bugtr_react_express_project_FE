@@ -1,20 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { fetchTransactions } from "../../../utils/api";
-
-const firstLetterUppercase = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-const humanReadableDate = (date) => {
-  const dateObject = new Date(date);
-  return dateObject.toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-};
+import { firstLetterUppercase, humanReadableDate, humanReadableAmount } from "../../../utils/formattingHelpers";
 
 const Transaction = ({ transaction, index }) => {
   return (
@@ -24,7 +11,7 @@ const Transaction = ({ transaction, index }) => {
       </th>
       <td className="px-4 py-2">{humanReadableDate(transaction.date)}</td>
       <td className="px-4 py-2">{firstLetterUppercase(transaction.from)}</td>
-      <td className="px-4 py-2">$ {transaction.amount}.00</td>
+      <td className="px-4 py-2">{humanReadableAmount(transaction.amount)}</td>
       <td className="px-4 py-2">{firstLetterUppercase(transaction.category)}</td>
       <td className="px-4 py-2">
         <Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-1" to={`/transactions/${index}`}>
