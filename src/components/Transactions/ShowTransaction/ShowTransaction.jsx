@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CustomButton from "../../common/CustomButton/CustomButton";
 import { firstLetterUppercase, humanReadableDate, humanReadableAmount } from "../../../utils/formattingHelpers";
 import { useTransaction } from "../../../hooks/showTransaction";
@@ -7,8 +6,6 @@ import { useTransaction } from "../../../hooks/showTransaction";
 const ShowTransaction = () => {
   const { index } = useParams();
   const transaction = useTransaction(index);
-
-  const navigate = useNavigate();
 
   return (
     <div className="showTransaction flex flex-col items-center justify-center">
