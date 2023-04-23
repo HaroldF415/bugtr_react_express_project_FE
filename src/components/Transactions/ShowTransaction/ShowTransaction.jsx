@@ -27,7 +27,7 @@ const ShowTransaction = () => {
       <div className="py-4">
         <h1 className="text-2xl font-bold mb-4">Budgtr Transaction</h1>
         {transaction.id ? (
-          <table className="table-auto w-full">
+          <table className="table-auto w-full text-center">
             <thead className="bg-gray-700 text-white">
               <tr>
                 <th className="px-4 py-2">ID</th>
@@ -53,7 +53,7 @@ const ShowTransaction = () => {
           <p>Loading...</p>
         )}
       </div>
-      <div className="py-4">
+      <div className="py-4 space-x-4">
         <CustomButton onClick={() => navigate("/transactions")} textContent={"Back"} />
         <CustomButton onClick={handleEdit} textContent={"Edit"} />
         <CustomButton onClick={handleDelete} textContent={"Delete"} />
