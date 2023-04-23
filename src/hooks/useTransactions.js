@@ -4,13 +4,17 @@ import { fetchTransactions } from "../utils/api";
 export const useTransactions = () => {
   const [transactions, setTransactions] = useState([]);
 
+  const updateTransactions = async () => {
+    setTransactions(await fetchTransactions());
+  };
+
   useEffect(() => {
     const fetchAPI = async () => {
-      setTransactions(await fetchTransactions());
+      await updateTransactions();
     };
 
     fetchAPI();
   }, []);
 
-  return transactions;
+  return { transactions, updateTransactions };
 };
