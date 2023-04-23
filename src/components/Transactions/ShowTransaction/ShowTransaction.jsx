@@ -54,6 +54,7 @@ const ShowTransaction = () => {
         )}
       </div>
       <div className="py-4">
+        <CustomButton onClick={() => navigate("/transactions")} textContent={"Back"} />
         <CustomButton onClick={handleEdit} textContent={"Edit"} />
         <CustomButton onClick={handleDelete} textContent={"Delete"} />
       </div>
