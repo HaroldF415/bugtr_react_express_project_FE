@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = process.env.REACT_APP_API_URL;
+const API = process.env.REACT_APP_API_URL || "https://bugtr-be.onrender.com";
 
 export const fetchTransactions = async () => {
   try {
