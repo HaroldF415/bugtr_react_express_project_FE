@@ -28,6 +28,7 @@ const NewTransaction = () => {
     const id = uuidv4();
     const updatedTransaction = {
       ...transaction,
+      amount: parseFloat(transaction.amount),
       category: newCategory ? newCategory : transaction.category,
       id,
     };
