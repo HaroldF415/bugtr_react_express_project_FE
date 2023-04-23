@@ -35,7 +35,7 @@ export const createTransaction = async (transaction) => {
 
 export const deleteTransaction = async (index) => {
   try {
-    await axios.delete(`${API}/transactions/${index}`);
+    await axios.delete(`${API}/transactions/${index - 1}`);
   } catch (error) {
     console.log(error);
     throw error;
