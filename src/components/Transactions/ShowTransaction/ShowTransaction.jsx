@@ -19,6 +19,9 @@ const ShowTransaction = () => {
     }
   };
 
+  const handleEdit = () => {
+    navigate(`/transactions/${index}/edit`);
+  };
   return (
     <div className="showTransaction flex flex-col items-center justify-center">
       <div className="py-4">
@@ -51,7 +54,7 @@ const ShowTransaction = () => {
         )}
       </div>
       <div className="py-4">
-        <CustomButton textContent={"Edit"} />
+        <CustomButton onClick={handleEdit} textContent={"Edit"} />
         <CustomButton onClick={handleDelete} textContent={"Delete"} />
       </div>
     </div>

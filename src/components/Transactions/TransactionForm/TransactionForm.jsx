@@ -1,4 +1,8 @@
+import { useEffect } from "react";
+
 const TransactionForm = ({ transaction, handleSubmit, handleTextChange }) => {
+  useEffect(() => {}, [transaction]);
+
   return (
     <div className="flex flex-col px-24">
       <div className="py-4 px-4">
