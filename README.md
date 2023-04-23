@@ -7,3 +7,4 @@
 - user LOGIN
 - use of chart.js or D3.js
 - helpful error messages
+- Bank total / partially complete
