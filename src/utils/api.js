@@ -41,3 +41,13 @@ export const deleteTransaction = async (index) => {
     throw error;
   }
 };
+
+export const updateTransaction = async (index, transaction) => {
+  try {
+    const response = await axios.put(`${API}/transactions/${index}`, transaction);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+};
