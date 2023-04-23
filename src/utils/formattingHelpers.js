@@ -13,7 +13,8 @@ export const humanReadableDate = (date) => {
 };
 
 export const humanReadableAmount = (amount) => {
-  return amount.toLocaleString("en-US", {
+  const newAmount = parseInt(amount);
+  return newAmount.toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
   });
