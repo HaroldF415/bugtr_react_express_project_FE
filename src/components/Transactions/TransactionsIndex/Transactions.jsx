@@ -27,7 +27,7 @@ const Transaction = ({ transaction, index }) => {
       <td className="px-4 py-2">$ {transaction.amount}.00</td>
       <td className="px-4 py-2">{firstLetterUppercase(transaction.category)}</td>
       <td className="px-4 py-2">
-        <Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-1" to={`/transactions/${transaction.id}`}>
+        <Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-1" to={`/transactions/${index}`}>
           View
         </Link>
         <Link className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-1" to={`/transactions/edit/${transaction.id}`}>
