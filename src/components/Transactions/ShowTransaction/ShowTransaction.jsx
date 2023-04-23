@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { fetchTransaction } from "../../../utils/api";
 import CustomButton from "../../common/CustomButton/CustomButton";
 import { firstLetterUppercase, humanReadableDate, humanReadableAmount } from "../../../utils/formattingHelpers";
+import { useTransaction } from "../../../hooks/showTransaction";
 
 const ShowTransaction = () => {
-  const [transaction, setTransaction] = useState({});
   const { index } = useParams();
+  const transaction = useTransaction(index);
+
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchTransactionIndex = async () => {
-      setTransaction(await fetchTransaction(index));
-    };
-
-    fetchTransactionIndex();
-  }, [index]);
 
   return (
     <div className="showTransaction flex flex-col items-center justify-center">
