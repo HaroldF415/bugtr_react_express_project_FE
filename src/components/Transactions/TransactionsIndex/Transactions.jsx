@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useTransactions } from "../../../hooks/useTransactions";
 import { firstLetterUppercase, humanReadableDate, humanReadableAmount } from "../../../utils/formattingHelpers";
 
@@ -17,19 +17,28 @@ const Transaction = ({ transaction, index }) => {
         <Link className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-1" to={`/transactions/${index}`}>
           View
         </Link>
-        <Link className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-1" to={`/transactions/edit/${transaction.id}`}>
+        {/* <Link className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-1" to={`/transactions/edit/${transaction.id}`}>
           Edit
         </Link>
         <Link className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" to={`/transactions/delete/${transaction.id}`}>
           Delete
-        </Link>
+        </Link> */}
       </td>
     </tr>
   );
 };
 
 const Transactions = () => {
-  const transactions = useTransactions();
+  const { transactions } = useTransactions();
+  const [deletedTransaction, setDeletedTransaction] = useState(null);
+
+  useEffect(() => {
+    const deletedTransactionID = sessionStorage.getItem("deletedTransactionID");
+    if (deletedTransactionID) {
+      setDeletedTransaction(deletedTransactionID);
+      sessionStorage.removeItem("deletedTransactionID");
+    }
+  }, []);
 
   return (
     <div className="container mx-auto px-4">
@@ -53,6 +62,7 @@ const Transactions = () => {
           </tbody>
         </table>
       </div>
+      <h3>{deletedTransaction && `The transactions with ID: ${deletedTransaction} has been removed from our records.`}</h3>
     </div>
   );
 };

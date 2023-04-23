@@ -1,11 +1,23 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CustomButton from "../../common/CustomButton/CustomButton";
 import { firstLetterUppercase, humanReadableDate, humanReadableAmount } from "../../../utils/formattingHelpers";
-import { useTransaction } from "../../../hooks/showTransaction";
+import { useSingleTransaction } from "../../../hooks/useSingleTransaction";
+import { deleteTransaction } from "../../../utils/api";
 
 const ShowTransaction = () => {
   const { index } = useParams();
-  const transaction = useTransaction(index);
+  const navigate = useNavigate();
+  const transaction = useSingleTransaction(index);
+
+  const handleDelete = async (index) => {
+    try {
+      await deleteTransaction(index);
+      sessionStorage.setItem("deletedTransactionID", transaction.id);
+      navigate("/transactions");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="showTransaction flex flex-col items-center justify-center">
@@ -30,7 +42,7 @@ const ShowTransaction = () => {
                 <td className="px-4 py-2">{humanReadableAmount(transaction.amount)}</td>
                 <td className="px-4 py-2">{firstLetterUppercase(transaction.from)}</td>
                 <td className="px-4 py-2">{firstLetterUppercase(transaction.category)}</td>
-                <td className="px-4 py-2">{transaction.transaction_type}</td>
+                <td className="px-4 py-2">{firstLetterUppercase(transaction.transaction_type)}</td>
               </tr>
             </tbody>
           </table>
@@ -40,7 +52,7 @@ const ShowTransaction = () => {
       </div>
       <div className="py-4">
         <CustomButton textContent={"Edit"} />
-        <CustomButton textContent={"Delete"} />
+        <CustomButton onClick={handleDelete} textContent={"Delete"} />
       </div>
     </div>
   );
