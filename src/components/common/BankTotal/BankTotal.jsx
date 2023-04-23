@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useTransactions } from "../../../hooks/useTransactions";
 import { humanReadableAmount } from "../../../utils/formattingHelpers";
 
@@ -11,6 +12,11 @@ const BankTotal = () => {
       total -= transaction.amount;
     }
   });
+
+  useEffect(() => {
+    document.title = `Bank Total: ${humanReadableAmount(total)}`;
+  }, [transactions, total]);
+
   return (
     <div className="container mx-auto px-4 flex justify-center">
       <h1 className="text-4xl">Bank Total {humanReadableAmount(total)}</h1>
