@@ -40,10 +40,21 @@ const Transactions = () => {
     }
   }, []);
 
+  let total = 0;
+  transactions.forEach((transaction) => {
+    if (transaction.transaction_type === "deposit") {
+      total += transaction.amount;
+    } else if (transaction.transaction_type === "withdrawal") {
+      total -= transaction.amount;
+    }
+  });
+
   return (
     <div className="container mx-auto px-4">
       <div className="py-4">
-        <h1 className="text-2xl font-bold mb-4">Transactions</h1>
+        <h1 className="text-4xl">Bank Account Total: {humanReadableAmount(total)}</h1>
+        <br />
+        <h2 className="text-3xl font-bold mb-4">Transactions</h2>
         <table className="table-auto w-full">
           <thead className="bg-gray-700 text-white">
             <tr>

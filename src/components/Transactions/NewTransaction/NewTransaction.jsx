@@ -23,13 +23,17 @@ const NewTransaction = () => {
     });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, newCategory) => {
     event.preventDefault();
     const id = uuidv4();
-    const newTransaction = { ...transaction, id };
+    const updatedTransaction = {
+      ...transaction,
+      category: newCategory ? newCategory : transaction.category,
+      id,
+    };
 
     try {
-      await createTransaction(newTransaction);
+      await createTransaction(updatedTransaction);
       const transactions = await fetchTransactions();
       navigate(`/transactions/${transactions.length - 1}`);
     } catch (error) {
