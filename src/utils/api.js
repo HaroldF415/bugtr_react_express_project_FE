@@ -21,3 +21,12 @@ export const fetchTransaction = async (index) => {
     return {};
   }
 };
+
+export const createTransaction = async (transaction) => {
+  try {
+    await axios.post(`${API}/transactions`, transaction);
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+};
