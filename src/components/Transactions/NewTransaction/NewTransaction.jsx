@@ -1,12 +1,12 @@
-import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import { useTransactionForm } from "../../../hooks/useTransactionForm";
 import TransactionForm from "../TransactionForm/TransactionForm";
 import { createTransaction, fetchTransactions } from "../../../utils/api";
 
 const NewTransaction = () => {
   const navigate = useNavigate();
-  const [transaction, setTransaction] = useState({
+  const initialTransaction = {
     id: "",
     item_name: "",
     amount: 0,
@@ -14,14 +14,9 @@ const NewTransaction = () => {
     from: "",
     category: "",
     transaction_type: "",
-  });
-
-  const handleTextChange = (event) => {
-    setTransaction({
-      ...transaction,
-      [event.target.name]: event.target.value,
-    });
   };
+
+  const { transaction, handleTextChange } = useTransactionForm(initialTransaction);
 
   const handleSubmit = async (event, newCategory) => {
     event.preventDefault();

@@ -1,35 +1,21 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSingleTransaction } from "../../../hooks/useSingleTransaction";
 import { updateTransaction } from "../../../utils/api";
+import { useTransactionForm } from "../../../hooks/useTransactionForm";
 import TransactionForm from "../TransactionForm/TransactionForm";
 
 const UpdateTransaction = () => {
   const { index } = useParams();
   const navigate = useNavigate();
   const singleTransaction = useSingleTransaction(index);
-  const [transaction, setTransaction] = useState({
-    id: "",
-    item_name: "",
-    amount: 0,
-    date: "",
-    from: "",
-    category: "",
-    transaction_type: "",
-  });
+  const { transaction, handleTextChange } = useTransactionForm(singleTransaction);
 
-  useEffect(() => {
-    if (singleTransaction) {
-      setTransaction(singleTransaction);
-    }
-  }, [singleTransaction]);
-
-  const handleTextChange = (event) => {
-    setTransaction({
-      ...transaction,
-      [event.target.name]: event.target.value,
-    });
-  };
+  // useEffect(() => {
+  //   if (singleTransaction) {
+  //     setTransaction(singleTransaction);
+  //   }
+  // }, [singleTransaction]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

@@ -22,6 +22,7 @@ const ShowTransaction = () => {
   const handleEdit = () => {
     navigate(`/transactions/${index}/edit`);
   };
+
   return (
     <div className="showTransaction flex flex-col items-center justify-center">
       <div className="py-4">

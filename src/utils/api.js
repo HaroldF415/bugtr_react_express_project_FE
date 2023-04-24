@@ -25,7 +25,6 @@ export const fetchTransaction = async (index) => {
 export const createTransaction = async (transaction) => {
   try {
     const response = await axios.post(`${API}/transactions`, transaction);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
