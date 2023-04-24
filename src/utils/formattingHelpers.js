@@ -19,3 +19,25 @@ export const humanReadableAmount = (amount) => {
     currency: "USD",
   });
 };
+
+export const setBankTotalColor = (total) => {
+  if (total < 0) {
+    return "text-red-600";
+  } else if (total >= 0 && total <= 100) {
+    return "text-yellow-600";
+  } else {
+    return "text-green-600";
+  }
+};
+
+export const calculateBankTotal = (transactions) => {
+  let total = 0;
+  transactions.forEach((transaction) => {
+    if (transaction.transaction_type === "deposit") {
+      total += transaction.amount;
+    } else if (transaction.transaction_type === "withdrawal") {
+      total -= transaction.amount;
+    }
+  });
+  return total;
+};
