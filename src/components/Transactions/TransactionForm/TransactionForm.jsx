@@ -1,25 +1,8 @@
-import { useState, useEffect } from "react";
-import { fetchTransactions } from "../../../utils/api";
-import { firstLetterUppercase } from "../../../utils/formattingHelpers";
+import { useState } from "react";
+import useCategories from "../../../hooks/useCategories";
 
 const TransactionForm = ({ transaction, handleSubmit, handleTextChange }) => {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    const getTransactions = async () => {
-      const transactions = await fetchTransactions();
-      setTransactions(transactions);
-    };
-
-    getTransactions();
-  }, [transaction]);
-
-  const categoriesArr = transactions.reduce((acc, transaction) => {
-    acc.add(firstLetterUppercase(transaction.category));
-    return acc;
-  }, new Set());
-
-  const uniqueCategories = [...categoriesArr];
+  const uniqueCategories = useCategories();
   const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
   const [newCategory, setNewCategory] = useState("");
 

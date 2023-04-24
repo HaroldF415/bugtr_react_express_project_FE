@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
 import { useSingleTransaction } from "../../../hooks/useSingleTransaction";
 import { updateTransaction } from "../../../utils/api";
 import TransactionForm from "../TransactionForm/TransactionForm";
